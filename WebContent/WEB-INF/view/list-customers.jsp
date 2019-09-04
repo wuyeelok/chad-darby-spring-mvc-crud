@@ -10,5 +10,7 @@
 
 	<p>List Customers - comming soon ...</p>
 
+	<p>${customers}</p>
+	
 </body>
 </html>
