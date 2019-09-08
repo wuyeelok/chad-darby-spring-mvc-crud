@@ -72,6 +72,13 @@
 
 			</table>
 
+			<br>
+
+			<p>
+				<a href="${pageContext.request.contextPath}/customer/list">Back
+					to List</a>
+			</p>
+
 		</form:form>
 
 	</div>
