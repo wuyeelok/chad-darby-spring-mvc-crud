@@ -11,6 +11,8 @@
 <!-- Reference our style sheet -->
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/add-customer-style.css" />
 </head>
 <body>
 
@@ -22,43 +24,55 @@
 
 	<div id="container">
 
-		<div id="content">
+		<h3>${formMode}&nbsp;Customer</h3>
 
-			<h3>${formMode}&nbsp;Customer</h3>
+		<form:form action="customer${formMode}" modelAttribute="customer"
+			method="post">
 
-			<form:form method="post" action="customer${formMode}"
-				modelAttribute="customer">
-				<c:choose>
-					<c:when test="${not empty showId && showId}">
-						<label for="id">Customer id:</label>
-						<form:input path="id" readonly="true" />
-						<br>
-					</c:when>
-					<c:otherwise>
-						<form:hidden path="id" />
-					</c:otherwise>
-				</c:choose>
-				<form:errors path="id" />
+			<table>
 
-				<label for="firstName">First name:</label>
-				<form:input path="firstName" />
-				<form:errors path="firstName" />
-				<br>
+				<tbody>
 
-				<label for="lastName">Last name:</label>
-				<form:input path="lastName" />
-				<form:errors path="lastName" />
-				<br>
+					<c:choose>
+						<c:when test="${not empty showId && showId}">
+							<tr>
+								<td><label for="id">Customer id:</label></td>
+								<td><form:input path="id" readonly="true" /></td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<form:hidden path="id" />
+						</c:otherwise>
+					</c:choose>
+					<form:errors path="id" />
 
-				<label for="email">Email:</label>
-				<form:input path="email" />
-				<form:errors path="email" />
-				<br>
+					<tr>
+						<td><label for="firstName">First name:</label></td>
+						<td><form:input path="firstName" /> <form:errors
+								path="firstName" /></td>
+					</tr>
 
-				<input type="submit" value="${formMode}" />
-			</form:form>
+					<tr>
+						<td><label for="lastName">Last name:</label></td>
+						<td><form:input path="lastName" /> <form:errors
+								path="lastName" /></td>
+					</tr>
 
-		</div>
+					<tr>
+						<td><label for="email">Email:</label></td>
+						<td><form:input path="email" /> <form:errors path="email" /></td>
+					</tr>
+
+					<tr>
+						<td><label></label></td>
+						<td><input type="submit" value="${formMode}" class="save" /></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</form:form>
 
 	</div>
 
