@@ -7,21 +7,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "customer")
 public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull(message = "Id can't be empty.  This shouldn't be happening!")
 	@Column(name = "id")
-	private int id;
+	private Integer id;
 
+	@NotNull(message = "Please enter first name.")
+	@Size(min = 1, max = 100, message = "The field must be between {min} and {max} characters.")
 	@Column(name = "first_name")
 	private String firstName;
 
+	@NotNull(message = "Please enter last name.")
+	@Size(min = 1, max = 100, message = "The field must be between {min} and {max} characters.")
 	@Column(name = "last_name")
 	private String lastName;
 
+	@NotNull(message = "Please enter email.")
+	@Size(min = 1, max = 200, message = "The field must be between {min} and {max} characters.")
 	@Column(name = "email")
 	private String email;
 
@@ -35,11 +45,11 @@ public class Customer {
 		this.email = email;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

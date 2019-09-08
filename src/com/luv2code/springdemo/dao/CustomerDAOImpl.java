@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,6 +40,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 		Query<Customer> query = session.createQuery(cq);
 
 		return query.getResultList();
+
+	}
+
+	@Override
+	public void createCustomer(Customer customer) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(customer);
 
 	}
 
