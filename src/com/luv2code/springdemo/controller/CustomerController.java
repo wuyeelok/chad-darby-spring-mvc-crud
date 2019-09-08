@@ -56,9 +56,9 @@ public class CustomerController {
 
 		theModel.addAttribute("showId", false);
 
-		Customer newCustomer = new Customer();
-		newCustomer.setId(0);
-		theModel.addAttribute("customer", newCustomer);
+		Customer theCustomer = new Customer();
+		theCustomer.setId(0);
+		theModel.addAttribute("customer", theCustomer);
 
 		return "customer-form";
 	}
