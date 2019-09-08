@@ -50,7 +50,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/showFormForAdd")
-	public String createCustomer(ModelMap theModel) {
+	public String showFormForAdd(ModelMap theModel) {
 
 		theModel.addAttribute("formMode", FormMode.CREATE);
 
@@ -60,7 +60,7 @@ public class CustomerController {
 		newCustomer.setId(0);
 		theModel.addAttribute("customer", newCustomer);
 
-		return "edit-customer";
+		return "customer-form";
 	}
 
 	@PostMapping("/customerCreate")
@@ -69,10 +69,10 @@ public class CustomerController {
 		String view = "";
 
 		if (result.hasErrors()) {
-			view = "edit-customer";
+			view = "customer-form";
 		} else {
 			this.customerService.createCustomer(customer);
-			
+
 			theModel.clear();
 			view = "redirect:list";
 		}
