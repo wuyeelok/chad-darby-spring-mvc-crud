@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,11 +36,24 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		Root<Customer> root = cq.from(Customer.class);
 
-		cq.select(root);
+		Order orderByLastNameAsc = cb.asc(root.get("lastName"));
+
+		cq.select(root).orderBy(orderByLastNameAsc);
 
 		Query<Customer> query = session.createQuery(cq);
 
 		return query.getResultList();
+
+	}
+
+	@Override
+	public void createCustomer(Customer theCustomer) {
+
+		// Get current hibernate session
+		Session session = this.sessionFactory.getCurrentSession();
+
+		// Save the customer
+		session.save(theCustomer);
 
 	}
 

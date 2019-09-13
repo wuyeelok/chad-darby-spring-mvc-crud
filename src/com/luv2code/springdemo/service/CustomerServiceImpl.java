@@ -26,4 +26,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return this.customerDAO.getCustomers();
 	}
 
+	@Override
+	@Transactional
+	public void createCustomer(Customer theCustomer) {
+		this.customerDAO.createCustomer(theCustomer);
+	}
 }
