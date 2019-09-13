@@ -8,6 +8,6 @@ public interface CustomerDAO {
 
 	public List<Customer> getCustomers();
 
-	public void createCustomer(Customer customer);
+	public void createCustomer(Customer theCustomer);
 
 }

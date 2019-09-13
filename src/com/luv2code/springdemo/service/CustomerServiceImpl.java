@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public void createCustomer(Customer customer) {
-		this.customerDAO.createCustomer(customer);
+	public void createCustomer(Customer theCustomer) {
+		this.customerDAO.createCustomer(theCustomer);
 	}
 }
