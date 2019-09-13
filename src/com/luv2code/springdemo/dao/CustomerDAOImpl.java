@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
@@ -35,7 +36,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		Root<Customer> root = cq.from(Customer.class);
 
-		cq.select(root);
+		Order orderByLastNameAsc = cb.asc(root.get("lastName"));
+
+		cq.select(root).orderBy(orderByLastNameAsc);
 
 		Query<Customer> query = session.createQuery(cq);
 
