@@ -26,8 +26,8 @@
 
 		<h3>${formMode}&nbsp;Customer</h3>
 
-		<form:form action="customer${formMode}" modelAttribute="customer"
-			method="post">
+		<form:form action="${formModeLowercase}Customer"
+			modelAttribute="customer" method="post">
 
 			<table>
 

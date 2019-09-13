@@ -22,7 +22,7 @@ import com.luv2code.springdemo.entity.Customer;
 import com.luv2code.springdemo.service.CustomerService;
 
 @Controller
-@SessionAttributes({ "formMode", "showId" })
+@SessionAttributes({ "formMode", "formModeLowercase", "showId" })
 @RequestMapping("/customer")
 public class CustomerController {
 
@@ -53,6 +53,7 @@ public class CustomerController {
 	public String showFormForAdd(ModelMap theModel) {
 
 		theModel.addAttribute("formMode", FormMode.CREATE);
+		theModel.addAttribute("formModeLowercase", FormMode.CREATE.toLowerCase());
 
 		theModel.addAttribute("showId", false);
 
@@ -63,7 +64,7 @@ public class CustomerController {
 		return "customer-form";
 	}
 
-	@PostMapping("/customerCreate")
+	@PostMapping("/createCustomer")
 	public String createCustomer(ModelMap theModel, @Valid @ModelAttribute Customer customer, BindingResult result) {
 
 		String view = "";
