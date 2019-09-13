@@ -6,8 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -27,11 +28,13 @@ public class Customer {
 
 	@NotNull(message = "Please enter last name.")
 	@Size(min = 1, max = 100, message = "The field must be between {min} and {max} characters.")
+	@Pattern(regexp = "^[A-Z]+$", message = "Capital letters only for last name.")
 	@Column(name = "last_name")
 	private String lastName;
 
 	@NotNull(message = "Please enter email.")
 	@Size(min = 1, max = 200, message = "The field must be between {min} and {max} characters.")
+	@Email(message = "Please enter a valid email!")
 	@Column(name = "email")
 	private String email;
 
