@@ -36,6 +36,7 @@
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Email</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				</tbody>
@@ -45,6 +46,7 @@
 						<td>${c.firstName}</td>
 						<td>${c.lastName}</td>
 						<td>${c.email}</td>
+						<td><a href="showFormForUpdate?id=${c.id}">Update</a></td>
 					</tr>
 				</c:forEach>
 				</tbody>

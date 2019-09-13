@@ -31,4 +31,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public void createCustomer(Customer theCustomer) {
 		this.customerDAO.createCustomer(theCustomer);
 	}
+
+	@Override
+	@Transactional
+	public Customer getCustomer(int id) {
+		return this.customerDAO.getCustomer(id);
+	}
 }

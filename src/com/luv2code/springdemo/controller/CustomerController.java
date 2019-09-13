@@ -1,6 +1,7 @@
 package com.luv2code.springdemo.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.validation.Valid;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.luv2code.springdemo.constant.FormMode;
@@ -22,7 +24,7 @@ import com.luv2code.springdemo.entity.Customer;
 import com.luv2code.springdemo.service.CustomerService;
 
 @Controller
-@SessionAttributes({ "formMode", "formModeLowercase", "showId" })
+@SessionAttributes({ "formMode", "formModeLowercase", "showId", "updatingId" })
 @RequestMapping("/customer")
 public class CustomerController {
 
@@ -79,5 +81,54 @@ public class CustomerController {
 		}
 
 		return view;
+	}
+
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(ModelMap theModel, @RequestParam(name = "id") int updatingId) {
+
+		String view = "";
+
+		theModel.addAttribute("formMode", FormMode.UPDATE);
+		theModel.addAttribute("formModeLowercase", FormMode.UPDATE.toLowerCase());
+
+		theModel.addAttribute("showId", true);
+
+		theModel.addAttribute("updatingId", updatingId);
+
+		Customer theCustomer = this.customerService.getCustomer(updatingId);
+		if (theCustomer != null) {
+			theModel.addAttribute("customer", theCustomer);
+			view = "customer-form";
+		} else {
+			theModel.clear();
+			view = "redirect:list";
+		}
+
+		return view;
+	}
+
+	@PostMapping("/updateCustomer")
+	public String updateCustomer(ModelMap theModel, @Valid @ModelAttribute Customer customer, BindingResult result) {
+
+		String view = "";
+
+		int updatingId = Integer.parseInt(Objects.toString(theModel.get("updatingId"), "-1"));
+
+		boolean validId = updatingId != customer.getId();
+
+		if (result.hasErrors() || validId) {
+			if (validId) {
+				theModel.addAttribute("idErrorMsg", "Stop messing with the Id field!");
+			}
+
+			view = "customer-form";
+		} else {
+
+			theModel.clear();
+			view = "redirect:list";
+		}
+
+		return view;
+
 	}
 }

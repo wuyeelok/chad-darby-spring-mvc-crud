@@ -37,7 +37,10 @@
 						<c:when test="${not empty showId && showId}">
 							<tr>
 								<td><label for="id">Customer id:</label></td>
-								<td><form:input path="id" readonly="true" /></td>
+								<td><form:input path="id" readonly="true" /> <c:if
+										test="${not empty idErrorMsg}">
+										<span>${idErrorMsg}</span>
+									</c:if></td>
 							</tr>
 						</c:when>
 						<c:otherwise>
