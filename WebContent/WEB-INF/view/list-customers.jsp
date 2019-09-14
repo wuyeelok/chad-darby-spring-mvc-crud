@@ -40,13 +40,13 @@
 					</tr>
 				</thead>
 				</tbody>
-				<c:forEach items="${customers}" var="c">
+				<c:forEach var="tempCustomer" items="${customers}">
 					<tr>
-						<td>${c.id}</td>
-						<td>${c.firstName}</td>
-						<td>${c.lastName}</td>
-						<td>${c.email}</td>
-						<td><a href="showFormForUpdate?id=${c.id}">Update</a></td>
+						<td>${tempCustomer.id}</td>
+						<td>${tempCustomer.firstName}</td>
+						<td>${tempCustomer.lastName}</td>
+						<td>${tempCustomer.email}</td>
+						<td><a href="showFormForUpdate?id=${tempCustomer.id}">Update</a></td>
 					</tr>
 				</c:forEach>
 				</tbody>
