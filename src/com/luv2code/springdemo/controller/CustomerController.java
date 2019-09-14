@@ -84,7 +84,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(ModelMap theModel, @RequestParam(name = "id") int updatingId) {
+	public String showFormForUpdate(ModelMap theModel, @RequestParam(name = "customerId") int updatingId) {
 
 		String view = "";
 
