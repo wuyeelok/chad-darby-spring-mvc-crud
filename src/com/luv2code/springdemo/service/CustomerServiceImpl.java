@@ -37,4 +37,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer getCustomer(int id) {
 		return this.customerDAO.getCustomer(id);
 	}
+
+	@Override
+	@Transactional
+	public void updateCustomer(Customer theCustomer) {
+		this.customerDAO.updateCustomer(theCustomer);
+	}
 }

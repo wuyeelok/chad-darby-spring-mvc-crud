@@ -123,6 +123,7 @@ public class CustomerController {
 
 			view = "customer-form";
 		} else {
+			this.customerService.updateCustomer(customer);
 
 			theModel.clear();
 			view = "redirect:list";
