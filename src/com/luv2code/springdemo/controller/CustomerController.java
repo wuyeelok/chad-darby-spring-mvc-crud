@@ -132,4 +132,14 @@ public class CustomerController {
 		return view;
 
 	}
+
+	@GetMapping("/deleteCustomer")
+	public String deleteCustomer(ModelMap theModel, @RequestParam(name = "customerId") int theId) {
+
+		String view = "redirect:list";
+
+		theModel.clear();
+		return view;
+
+	}
 }
