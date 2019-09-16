@@ -138,6 +138,11 @@ public class CustomerController {
 
 		String view = "redirect:list";
 
+		Customer theCustomer = this.customerService.getCustomer(theId);
+		if (theCustomer != null) {
+			this.customerService.deleteCustomer(theCustomer);
+		}
+
 		theModel.clear();
 		return view;
 
