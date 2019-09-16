@@ -46,7 +46,13 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public void deleteCustomer(Customer theCustomer) {
-		this.customerDAO.deleteCustomer(theCustomer);		
+	public void deleteCustomer(int theId) {
+
+		Customer theCustomer = this.customerDAO.getCustomer(theId);
+
+		if (theCustomer != null) {
+			this.customerDAO.deleteCustomer(theCustomer);
+		}
+
 	}
 }

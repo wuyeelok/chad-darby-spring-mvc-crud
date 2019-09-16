@@ -136,15 +136,10 @@ public class CustomerController {
 	@GetMapping("/deleteCustomer")
 	public String deleteCustomer(ModelMap theModel, @RequestParam(name = "customerId") int theId) {
 
-		String view = "redirect:list";
-
-		Customer theCustomer = this.customerService.getCustomer(theId);
-		if (theCustomer != null) {
-			this.customerService.deleteCustomer(theCustomer);
-		}
+		this.customerService.deleteCustomer(theId);
 
 		theModel.clear();
-		return view;
+		return "redirect:list";
 
 	}
 }
