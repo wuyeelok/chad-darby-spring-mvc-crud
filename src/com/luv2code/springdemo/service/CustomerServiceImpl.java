@@ -1,6 +1,8 @@
 package com.luv2code.springdemo.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.transaction.Transactional;
 
@@ -53,6 +55,22 @@ public class CustomerServiceImpl implements CustomerService {
 		if (theCustomer != null) {
 			this.customerDAO.deleteCustomer(theCustomer);
 		}
+
+	}
+
+	@Override
+	@Transactional
+	public List<Customer> searchCustomers(String theSearchName) {
+
+		List<Customer> searchResults = new ArrayList<>();
+
+		if (!"".equals(Objects.toString(theSearchName, ""))) {
+			searchResults = this.customerDAO.searchCustomers(theSearchName);
+		} else {
+			searchResults = this.customerDAO.getCustomers();
+		}
+
+		return searchResults;
 
 	}
 }
