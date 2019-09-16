@@ -84,7 +84,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(ModelMap theModel, @RequestParam(name = "customerId") int updatingId) {
+	public String showFormForUpdate(ModelMap theModel, @RequestParam(name = "customerId") int theId) {
 
 		String view = "";
 
@@ -93,9 +93,9 @@ public class CustomerController {
 
 		theModel.addAttribute("showId", true);
 
-		theModel.addAttribute("updatingId", updatingId);
+		theModel.addAttribute("updatingId", theId);
 
-		Customer theCustomer = this.customerService.getCustomer(updatingId);
+		Customer theCustomer = this.customerService.getCustomer(theId);
 		if (theCustomer != null) {
 			theModel.addAttribute("customer", theCustomer);
 			view = "customer-form";
