@@ -10,7 +10,7 @@ if (deleteLinkEles !== undefined && deleteLinkEles !== null) {
             const urlHref = url.getAttribute("href")
             const cId = urlHref.substring(26)
 
-            if (confirm(`Are you sure you want to delete customer with Id: ${cId}?`)) {
+            if (confirm(`Are you sure you want to delete this customer with Id: ${cId}?`)) {
                 window.location.href = urlHref
             }
         });
