@@ -58,7 +58,7 @@
 						<td>${tempCustomer.lastName}</td>
 						<td>${tempCustomer.email}</td>
 						<td><a href="${updateLink}">Update</a>&nbsp;|&nbsp;<a
-							href="${deleteLink}">Delete</a></td>
+							class="deleteLink" href="${deleteLink}">Delete</a></td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -68,5 +68,7 @@
 
 	</div>
 
+	<script
+		src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 </body>
 </html>
