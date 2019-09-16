@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
@@ -86,6 +87,37 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		session.delete(theCustomer);
 
+	}
+
+	@Override
+	public List<Customer> searchCustomers(String theSearchName) {
+
+		// Get current hibernate session
+		Session session = this.sessionFactory.getCurrentSession();
+
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+
+		CriteriaQuery<Customer> cq = cb.createQuery(Customer.class);
+
+		Root<Customer> root = cq.from(Customer.class);
+
+		Predicate firstNameLike = cb.like(root.get("firstName"), "%" + theSearchName + "%");
+
+		Predicate lastNameLike = cb.like(root.get("lastName"), "%" + theSearchName + "%");
+
+		Predicate[] firstLastNameLikeArr = { firstNameLike, lastNameLike };
+
+		Predicate finalOrCondtions = cb.or(firstLastNameLikeArr);
+
+		Order orderByLastNameAsc = cb.asc(root.get("lastName"));
+
+		cq.select(root).where(finalOrCondtions).orderBy(orderByLastNameAsc);
+
+		Query<Customer> query = session.createQuery(cq);
+
+		List<Customer> matchedCustomers = query.getResultList();
+
+		return matchedCustomers;
 	}
 
 }
